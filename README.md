@@ -21,6 +21,7 @@ java -jar build/libs/*all.jar '{}'
 
 ## Start an Oracle instance
 ### wnameless
+- https://hub.docker.com/r/wnameless/oracle-xe-11g-r2
 - Time: 11s
 - Size: 2.1GB
 ```
@@ -30,6 +31,7 @@ docker run --rm --name oracle-xe \
 ```
 
 ### gvenzl
+- https://hub.docker.com/r/gvenzl/oracle-xe
 - Time: 21s
 - Size: 601MB
 ```

@@ -13,10 +13,7 @@ A runnable JAR with all dependencies will be created here build/libs/*all.jar as
 
 ## Run wait4ora application (jar)
 ```
-java -jar build/libs/*all.jar \
-    oracle.jdbc.driver.OracleDriver \
-    jdbc:oracle:thin:@localhost:1521:XE \
-    system oracle 180
+java -jar build/libs/*all.jar '{}'
 ```
 
 ## Start an Oracle instance

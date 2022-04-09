@@ -1,10 +1,15 @@
 # wait4ora
 
-This small utility waits until an oracle instance is fully started.
+This small utility waits until an oracle database instance is fully started.
 
-## Start application
+## Build wait4ora application (jar)
+A runnable JAR with all dependencies can be create here build/libs/*all.jar as follows:
 ```
 ./gradlew shadowjar
+```
+
+## Start wait4ora application (jar)
+```
 java -jar build/libs/*all.jar \
     oracle.jdbc.driver.OracleDriver \
     jdbc:oracle:thin:@localhost:1521:XE \

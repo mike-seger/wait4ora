@@ -73,7 +73,7 @@ public class Wait4Ora {
         try {
             var timeZone = TimeZone.getTimeZone("UTC");
             TimeZone.setDefault(timeZone);
-            System.setProperty("oracle.jdbc timezoneAsRegion", "false");
+            System.setProperty("oracle.jdbc.timezoneAsRegion", "false");
             Class.forName(parameters.jdbc.driver);
             log.info("Connecting to database: ", parameters);
             long startedSecs = System.currentTimeMillis() / 1000;

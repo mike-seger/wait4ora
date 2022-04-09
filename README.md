@@ -1,6 +1,6 @@
 # wait4ora
 
-This small utility can be used to wait until an oracle instance is fully started.
+This small utility waits until an oracle instance is fully started.
 
 ## Start application
 ```

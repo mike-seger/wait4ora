@@ -60,7 +60,7 @@ public class Wait4Ora {
             System.out.println(
                 OffsetDateTime.now(ZoneOffset.UTC).format(DateTimeFormatter.ISO_DATE_TIME)+": "+
                 Arrays.stream(objects).map(o -> (o+""))
-                    .collect(Collectors.joining(" ")));
+                    .collect(Collectors.joining(" ")).trim());
         }
     }
 
@@ -77,7 +77,12 @@ public class Wait4Ora {
             Class.forName(parameters.jdbc.driver);
             log.info("Connecting to database: ", parameters);
             long startedSecs = System.currentTimeMillis() / 1000;
+            boolean first = true;
             while (System.currentTimeMillis() / 1000 - startedSecs < parameters.connTimeoutSecs) {
+                if(!first)
+                    //noinspection BusyWait
+                    Thread.sleep(1000L*parameters.pollInterval);
+                first = false;
                 try (Connection conn = DriverManager.getConnection(
                         parameters.jdbc.url, parameters.jdbc.user, parameters.jdbc.password)) {
                     log.info("Running SQL: ", parameters.sqlCheck);
@@ -90,15 +95,14 @@ public class Wait4Ora {
                             return;
                         } catch (SQLException e) {
                             e.printStackTrace();
+                            System.exit(1);
                         }
                     }
                 } catch (SQLException e) {
                     log.info(e.getMessage());
-                    //noinspection BusyWait
-                    Thread.sleep(1000L*parameters.pollInterval);
                 }
             }
-            throw new IllegalStateException("Could not connect within "+parameters.connTimeoutSecs);
+            throw new IllegalStateException("Could not connect within "+parameters.connTimeoutSecs+ " seconds");
         } catch (ClassNotFoundException e) {
             log.info(parameters.jdbc.driver, "driver not found on classpath.");
             throw e;

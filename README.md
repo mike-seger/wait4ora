@@ -14,6 +14,8 @@ A runnable JAR with all dependencies will be created here build/libs/*all.jar as
 ## Run wait4ora application (jar)
 ```
 java -jar build/libs/*all.jar '{}'
+# or just getting help on available options
+java -jar build/libs/*all.jar
 ```
 
 ## Start an Oracle instance

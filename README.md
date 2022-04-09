@@ -18,8 +18,8 @@ java -jar build/libs/*all.jar \
 
 ## Start an Oracle instance
 ### wnameless
-Time: 11s
-Size: 2.1GB
+- Time: 11s
+- Size: 2.1GB
 ```
 docker run --rm --name oracle-xe \
     -p 1521:1521 -p 8980:8080 \
@@ -27,8 +27,8 @@ docker run --rm --name oracle-xe \
 ```
 
 ### gvenzl
-Time: 21s
-Size: 601MB
+- Time: 21s
+- Size: 601MB
 ```
 docker run --rm --name oracle-xe \
     -p 1521:1521 -e ORACLE_PASSWORD=oracle \

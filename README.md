@@ -3,7 +3,7 @@
 This small utility waits until an Oracle database instance is fully started.
 
 Why is this needed?  
-Unlike other databases, Oracle listens on the TCP port before it allows SQL interactions. It doesn't allow the standard TCP port check to be used. This is inconvenient in CI/CD pipelines.
+Unlike other databases, Oracle listens on the TCP port before it allows SQL interactions. This doesn't allow the standard TCP port check to be used. In particular, this is inconvenient in CI/CD pipelines.
 
 ## Build wait4ora application (jar)
 A runnable JAR with all dependencies will be created here build/libs/*all.jar as follows:

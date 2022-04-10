@@ -6,7 +6,7 @@ Why is this needed?
 Unlike other databases, Oracle listens on the TCP port before it allows SQL interactions. This doesn't allow the standard TCP port check to be used. In particular, this is inconvenient in CI/CD pipelines.
 
 How does it work?  
-wait4ora tries to connect and send an SQL query to the database until successful or a timout has been exceeded. 
+wait4ora tries to connect and send an SQL query to the database until successful or a timeout has been exceeded. 
 
 ## Build wait4ora application (jar)
 A runnable JAR with all dependencies will be created here build/libs/*all.jar as follows:

@@ -21,14 +21,18 @@ function measure() {
 	local size=0
 	local n=0
 	n=$(docker images "$image" | wc -l)
-  if [ "$n" != 2 ] ; then
-    docker pull "$image" >&2
-  fi
+	if [ "$n" != 2 ] ; then
+		docker pull "$image" >&2
+	fi
 	size=$(docker images --format "{{.Size}}" "$image" | sed -e "s/[GM]/ &/")
 	printf "%-48s: " "$image ($size)"
-	doMeasure "$1" 2>&1 | \
+	time=$(doMeasure "$1" | \
 		grep "Connection established after" | \
-		sed -e "s/.*established after *//;s/seconds/s/"
+		sed -e "s/.*established after *//;s/seconds/s/")
+	if [ "$time" == "" ] ; then
+		time="?"
+	fi
+	echo "$time"
 }
 
 if [ $# == 1 ] ; then

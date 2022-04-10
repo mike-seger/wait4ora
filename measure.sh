@@ -8,7 +8,7 @@ trap 'docker rm -f oracle-xe 2>&1 >/dev/null' EXIT
 
 function startOracle() {
 	local image="$1"
-	docker rm -f oracle-xe
+	docker rm -f oracle-xe 2>/dev/null
 	docker run --rm --name oracle-xe \
 		-p 1521:1521 -e ORACLE_PASSWORD=oracle \
 		-d "$image"
@@ -17,11 +17,15 @@ function startOracle() {
 function doMeasure() {
 	local image="$1"
 	local jar=""
-	jar=$(find build/libs/*all.jar|head 2>/dev/null)
 	startOracle "$image"
-	if [ ! -f "$jar" ] ; then
-		./gradlew clean build >/dev/null
-		jar=$(find build/libs/*all.jar|head)
+	if [ $? != 0 ] ; then
+		echo "error staring container: $image"
+		return
+	fi
+	jar=$(find . -path "./build/libs/*all.jar"|tr -d " "|head)
+	if [[ "$jar" == "" || ! -f "$jar" ]] ; then
+		./gradlew clean build
+		jar=$(find . -path "./build/libs/*all.jar"|head)
 	fi
 	java -jar "$jar" '{}'
 }

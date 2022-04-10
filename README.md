@@ -56,8 +56,11 @@ docker run --rm --name oracle-xe \
     -d gvenzl/oracle-xe:11-slim
 ```
 
-
 ## measure start times
+These measurements have been taken with the following specs:
+- macOS 11.3.1 20E241 x86_64
+- Intel i9-9900 (16) @ 3.10GHz
+- Samsung SSD 860 QVO 2TB
 ### measure the default list of images
 ```
 $ ./measure.sh     

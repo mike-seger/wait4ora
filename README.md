@@ -103,3 +103,6 @@ ORA-12528, TNS:listener: all appropriate instances are blocking new connections
 2022-04-10T10:46:09.861312Z: ID 123456
 2022-04-10T10:46:09.861486Z: Connection established after 12 seconds
 ```
+
+## links
+- https://stackoverflow.com/questions/68605011/oracle-12c-docker-setup-on-apple-m1/70719148?noredirect=1#comment126132166_70719148

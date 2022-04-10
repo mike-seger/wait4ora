@@ -17,7 +17,7 @@ function startOracle() {
 function doMeasure() {
 	local image="$1"
 	local jar=""
-	jar=$(find build/libs/*all.jar|head)
+	jar=$(find build/libs/*all.jar|head 2>/dev/null)
 	startOracle "$image"
 	if [ ! -f "$jar" ] ; then
 		./gradlew clean build >/dev/null

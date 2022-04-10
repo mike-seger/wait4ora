@@ -3,11 +3,11 @@
 trap 'docker rm -f oracle-xe 2>&1 >/dev/null' EXIT
 
 function startOracle() {
-        local image="$1"
-        docker rm -f oracle-xe
-        docker run --rm --name oracle-xe \
-                -p 1521:1521 -e ORACLE_PASSWORD=oracle \
-                -d "$image"
+	local image="$1"
+	docker rm -f oracle-xe
+	docker run --rm --name oracle-xe \
+		-p 1521:1521 -e ORACLE_PASSWORD=oracle \
+		-d "$image"
 }
 
 function doMeasure() {

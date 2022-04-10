@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# shellcheck disable=SC2046
+# shellcheck disable=SC2164
+cd $(dirname "$0")
+
 trap 'docker rm -f oracle-xe 2>&1 >/dev/null' EXIT
 
 function startOracle() {
@@ -12,8 +16,14 @@ function startOracle() {
 
 function doMeasure() {
 	local image="$1"
+	local jar=""
+	jar=$(find build/libs/*all.jar|head)
 	startOracle "$image"
-	java -jar build/libs/*all.jar '{}'
+	if [ ! -f "$jar" ] ; then
+		./gradlew clean build >/dev/null
+		jar=$(find build/libs/*all.jar|head)
+	fi
+	java -jar "$jar" '{}'
 }
 
 function measure() {

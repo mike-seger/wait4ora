@@ -22,7 +22,7 @@ public class Wait4Ora {
         public Parameters(String[] args) throws JsonProcessingException {
             if(args.length!=1 || args[0].trim().matches("(-h|-help|--help)")) {
                 log.info("\nUsage:", Wait4Ora.class.getSimpleName(), "<JSON parameters>",
-                    "\nThe expected input is a JSON being least '{}'.",
+                    "\nThe expected input is a JSON being at least '{}'.",
                     "\nThe default values are:\n"+map(new Parameters()));
                 System.exit(1);
             }
@@ -31,9 +31,9 @@ public class Wait4Ora {
 
         private Parameters() {}
 
-        public Integer connTimeoutSecs = 10;
-        public Integer pollInterval = 10;
-        public String sqlCheck = "SELECT 1 AS ID FROM DUAL";
+        public Integer connTimeoutSecs = 60;
+        public Integer pollInterval = 3;
+        public String sqlCheck = "SELECT 123456 AS ID FROM DUAL";
         public Jdbc jdbc = new Jdbc();
 
         public class Jdbc {

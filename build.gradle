@@ -21,3 +21,5 @@ shadowJar {
         attributes "Main-Class": "com.net128.wait4ora.Wait4Ora"
     }
 }
+
+tasks.build.dependsOn tasks.shadowJar

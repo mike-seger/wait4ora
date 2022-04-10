@@ -58,15 +58,15 @@ docker run --rm --name oracle-xe \
 
 ## measure start times
 These measurements have been taken with the following specs:
-- macOS 11.3.1 20E241 x86_64
-- Intel i9-9900 (16) @ 3.10GHz
+- Ubuntu 20.04.4 LTS x86_64
+- Intel i7-9700K (8) @ 4.900GHz
 - Samsung SSD 860 QVO 2TB
 ### measure the default list of images
 ```
-$ ./measure.sh     
-wnameless/oracle-xe-11g-r2:latest (2.1 GB)      : 10 s
+$ ./measure.sh 
+wnameless/oracle-xe-11g-r2:latest (2.1 GB)      : 12 s
 gvenzl/oracle-xe:11-slim (601 MB)               : 12 s
-gvenzl/oracle-xe:slim (2.07 GB)                 : 22 s
+gvenzl/oracle-xe:slim (2.07 GB)                 : 19 s
 ```
 
 ### measure a custom image

@@ -7,7 +7,7 @@ function startOracle() {
         docker rm -f oracle-xe
         docker run --rm --name oracle-xe \
                 -p 1521:1521 -e ORACLE_PASSWORD=oracle \
-                -d $image
+                -d "$image"
 }
 
 function doMeasure() {
@@ -18,7 +18,13 @@ function doMeasure() {
 
 function measure() {
 	local image="$1"
-	local size=$(docker images --format "{{.Size}}" "$image" | sed -e "s/[GM]/ &/")
+	local size=0
+	local n=0
+	n=$(docker images "$image" | wc -l)
+  if [ "$n" != 2 ] ; then
+    docker pull "$image" >&2
+  fi
+	size=$(docker images --format "{{.Size}}" "$image" | sed -e "s/[GM]/ &/")
 	printf "%-48s: " "$image ($size)"
 	doMeasure "$1" 2>&1 | \
 		grep "Connection established after" | \
